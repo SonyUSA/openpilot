@@ -365,10 +365,10 @@ EVENTS = {
 
   EventName.promptDriverDistracted: {
     ET.WARNING: Alert(
-      "KEEP EYES ON ROAD",
+      "PAY ATTENTION DINGUS",
       "Driver Appears Distracted",
       AlertStatus.userPrompt, AlertSize.mid,
-      Priority.MID, VisualAlert.steerRequired, AudibleAlert.chimeWarning2Repeat, .1, .1, .1),
+      Priority.MID, VisualAlert.steerRequired, AudibleAlert.chimeDriverRepeat, .1, .1, .1),
   },
 
   EventName.driverDistracted: {
