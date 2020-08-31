@@ -639,7 +639,7 @@ static void ui_draw_driver_view(UIState *s) {
   }
 
   // draw face icon
-  const int face_size = 85;
+  const int face_size = 100; //A little bigger to see Rakan better! - SonyUSA
   const int x = (valid_frame_x + face_size + (bdr_s * 2)) + (scene->is_rhd ? valid_frame_w - box_h / 2:0);
   const int y = (box_y + box_h - face_size - bdr_s - (bdr_s * 1.5));
   ui_draw_circle_image(s->vg, x, y+border_shifter+25, face_size-5, s->img_face, scene->driver_state.getFaceProb() > 0.4);
@@ -647,7 +647,7 @@ static void ui_draw_driver_view(UIState *s) {
 
 static void ui_draw_vision_brake(UIState *s) { //We should probably refactor this to use ui_draw_circle_image() -wirelessnet2
   const UIScene *scene = &s->scene;
-  const int brake_size = 85; //made the Brake Icon a bit smaller -wirelessnet2
+  const int brake_size = 100; //made the Brake Icon a bit smaller -wirelessnet2 (now bigger again! - sonyusa)
   const int brake_x = (scene->ui_viz_rx + (brake_size * 5) + (bdr_is * 2.5)); //Moved brake icon a bit closer to DM icon -wirelessnet2
   const int brake_y = (footer_y + ((footer_h - brake_size) / 2));
   const int brake_img_size = (brake_size * 1.5);
