@@ -368,7 +368,7 @@ EVENTS = {
       "PAY ATTENTION DINGUS",
       "Driver Appears Distracted",
       AlertStatus.userPrompt, AlertSize.mid,
-      Priority.MID, VisualAlert.steerRequired, AudibleAlert.chimeDriverRepeat, .1, .1, .1),
+      Priority.MID, VisualAlert.steerRequired, AudibleAlert.chimeDriver, .1, .1, .1),
   },
 
   EventName.driverDistracted: {
