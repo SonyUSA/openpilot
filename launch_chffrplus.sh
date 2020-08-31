@@ -1,19 +1,24 @@
 #!/usr/bin/bash
 
+export OMP_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export VECLIB_MAXIMUM_THREADS=1
+
 if [ -z "$BASEDIR" ]; then
   BASEDIR="/data/openpilot"
 fi
 
-source "$BASEDIR/launch_env.sh"
+if [ -z "$PASSIVE" ]; then
+  export PASSIVE="1"
+fi
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+STAGING_ROOT="/data/safe_staging"
 
 function launch {
   # Wifi scan
   wpa_cli IFNAME=wlan0 SCAN
-
-  # Remove orphaned git lock if it exists on boot
-  [ -f "$DIR/.git/index.lock" ] && rm -f $DIR/.git/index.lock
 
   # Check to see if there's a valid overlay-based update available. Conditions
   # are as follows:
@@ -44,7 +49,6 @@ function launch {
           git submodule foreach --recursive git reset --hard
 
           echo "Restarting launch script ${LAUNCHER_LOCATION}"
-          unset REQUIRED_NEOS_VERSION
           exec "${LAUNCHER_LOCATION}"
         else
           echo "openpilot backup found, not updating"
@@ -71,21 +75,26 @@ function launch {
   [ -d "/proc/irq/733" ] && echo 3 > /proc/irq/733/smp_affinity_list # USB for LeEco
   [ -d "/proc/irq/736" ] && echo 3 > /proc/irq/736/smp_affinity_list # USB for OP3T
 
+  DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+
+  # Remove old NEOS update file
+  # TODO: move this code to the updater
+  if [ -d /data/neoupdate ]; then
+    rm -rf /data/neoupdate
+  fi
 
   # Check for NEOS update
-  if [ $(< /VERSION) != "$REQUIRED_NEOS_VERSION" ]; then
+  if [ $(< /VERSION) != "14" ]; then
     if [ -f "$DIR/scripts/continue.sh" ]; then
       cp "$DIR/scripts/continue.sh" "/data/data/com.termux/files/continue.sh"
     fi
 
     if [ ! -f "$BASEDIR/prebuilt" ]; then
-      # Clean old build products, but preserve the scons cache
-      cd $DIR
-      scons --clean
-      git clean -xdf
-      git submodule foreach --recursive git clean -xdf
+      echo "Clearing build products and resetting scons state prior to NEOS update"
+      cd $BASEDIR && scons --clean
+      rm -rf /tmp/scons_cache
+      rm -r $BASEDIR/.sconsign.dblite
     fi
-
     "$DIR/installer/updater/updater" "file://$DIR/installer/updater/update.json"
   else
     if [[ $(uname -v) == "#1 SMP PREEMPT Wed Jun 10 12:40:53 PDT 2020" ]]; then
