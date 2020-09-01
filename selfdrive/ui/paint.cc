@@ -1241,7 +1241,16 @@ void ui_nvg_init(UIState *s) {
 
   assert(s->img_brake >= 0);
   s->img_brake = nvgCreateImage(s->vg, "../assets/img_brake_disc.png", 1);
-
+  
+  //Let's add some waifus! -SonyUSA
+  s->img_waifu1 = nvgCreateImage(s->vg, "../assets/waifu1.png", 1);
+  assert(s->img_waifu1 != 0);
+  s->img_waifu2 = nvgCreateImage(s->vg, "../assets/waifu2.png", 1);
+  assert(s->img_waifu2 != 0);
+  s->img_waifu3 = nvgCreateImage(s->vg, "../assets/waifu3.png", 1);
+  assert(s->img_waifu3 != 0);
+  
+  
   for(int i=0;i<=5;++i) {
     char network_asset[32];
     snprintf(network_asset, sizeof(network_asset), "../assets/images/network_%d.png", i);
