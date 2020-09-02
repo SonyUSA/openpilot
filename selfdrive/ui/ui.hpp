@@ -192,6 +192,9 @@ typedef struct UIState {
   int img_battery_charging;
   int img_network[6];
   int img_brake;
+  int img_waifu1;
+  int img_waifu2;
+  int img_waifu3;
 
   // sockets
   SubMaster *sm;
