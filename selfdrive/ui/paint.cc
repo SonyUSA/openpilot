@@ -658,7 +658,7 @@ static void ui_draw_driver_view(UIState *s) {
 static void ui_draw_vision_brake(UIState *s) { //We should probably refactor this to use ui_draw_circle_image() -wirelessnet2
   const UIScene *scene = &s->scene;
   const int brake_size = 100; //made the Brake Icon a bit smaller -wirelessnet2 (now bigger again! -SonyUSA)
-  const int brake_x = (scene->ui_viz_rx + (brake_size * 5) + (bdr_is * 0.5)); //Xayah should be next to Rakan! -SonyUSA
+  const int brake_x = (scene->ui_viz_rx + (brake_size * 3) + (bdr_is * 1.5)); //Xayah should be next to Rakan! -SonyUSA
   const int brake_y = (footer_y + ((footer_h - brake_size) / 2));
   const int brake_img_size = (brake_size * 1.5);
   const int brake_img_x = (brake_x - (brake_img_size / 2));
