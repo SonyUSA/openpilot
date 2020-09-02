@@ -584,11 +584,11 @@ static void ui_draw_vision_map(UIState *s) {
 
 // This looks like a good spot for waifu code!
 static void ui_draw_waifu1(UIState *s) {
-  const int waifu1_size = 100;
-  const int waifu1_x = (s->scene.ui_viz_rx + (waifu1_size * 8) + (bdr_is * 6));
+  const int waifu1_size = 150;
+  const int waifu1_x = (s->scene.ui_viz_rx + (waifu1_size * 6) + (bdr_is * 6));
   const int waifu1_y = (footer_y + ((footer_h - waifu1_size) / 2));
-  ui_draw_image(s->vg, waifu1_x, waifu1_y+border_shifter+25, waifu1_size-5, s->img_waifu1, 1); // fingers crossed
-  // ui_draw_circle_image(s->vg, waifu1_x, waifu1_y+border_shifter+25, waifu1_size-5, s->img_waifu1, 1); // circle draw
+  // ui_draw_image(s->vg, waifu1_x, waifu1_y+border_shifter+25, waifu1_size-5, s->img_waifu1, 1); // fingers crossed
+  ui_draw_circle_image(s->vg, waifu1_x, waifu1_y+border_shifter+25, waifu1_size-5, s->img_waifu1, 1); // no matching function for call
 }
 // End of waifus
 
