@@ -583,12 +583,12 @@ static void ui_draw_vision_map(UIState *s) {
 #endif
 
 // This looks like a good spot for waifu code!
-//static void ui_draw_waifu1(UIState *s) {
-//  const int waifu1_size = 100;
-//  const int waifu1_x = (s->scene.ui_viz_rx + (waifu1_size * 3) + (bdr_is * 3));
-//  const int waifu1_y = (footer_y + ((footer_h - waifu1_size) / 2));
-//  ui_draw_circle_image(s->vg, waifu1_x, waifu1_y+border_shifter+25, waifu1_size-5, s->img_waifu1, s->scene.waifu1_valid);
-//}
+static void ui_draw_waifu1(UIState *s) {
+  const int waifu1_size = 100;
+  const int waifu1_x = (s->scene.ui_viz_rx + (waifu1_size * 3) + (bdr_is * 3));
+  const int waifu1_y = (footer_y + ((footer_h - waifu1_size) / 2));
+  ui_draw_circle_image(s->vg, waifu1_x, waifu1_y+border_shifter+25, waifu1_size-5, s->img_waifu1, s->scene.waifu1_valid);
+}
 // End of waifus
 
 static void ui_draw_vision_face(UIState *s) {
@@ -1009,7 +1009,7 @@ static void ui_draw_vision_footer(UIState *s) {
 
   ui_draw_vision_face(s);
   ui_draw_vision_brake(s);
-  //ui_draw_waifu1(s); //I'll just leave this here... -SonyUSA
+  ui_draw_waifu1(s); //I'll just leave this here... -SonyUSA
 
 #ifdef SHOW_SPEEDLIMIT
   // ui_draw_vision_map(s);
@@ -1255,10 +1255,10 @@ void ui_nvg_init(UIState *s) {
   //Let's add some waifus! -SonyUSA
   s->img_waifu1 = nvgCreateImage(s->vg, "../assets/waifu1.png", 1);
   assert(s->img_waifu1 != 0);
-  s->img_waifu2 = nvgCreateImage(s->vg, "../assets/waifu2.png", 1);
-  assert(s->img_waifu2 != 0);
-  s->img_waifu3 = nvgCreateImage(s->vg, "../assets/waifu3.png", 1);
-  assert(s->img_waifu3 != 0);
+  // s->img_waifu2 = nvgCreateImage(s->vg, "../assets/waifu2.png", 1);
+  // assert(s->img_waifu2 != 0);
+  // s->img_waifu3 = nvgCreateImage(s->vg, "../assets/waifu3.png", 1);
+  // assert(s->img_waifu3 != 0);
   
   
   for(int i=0;i<=5;++i) {
