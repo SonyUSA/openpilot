@@ -582,12 +582,18 @@ static void ui_draw_vision_map(UIState *s) {
 }
 #endif
 
-// This looks like a good spot for waifu code!
+// This looks like a good spot for waifu code! -SonyUSA
+//
+// The default images are 267x267 pixels at full size
+// At full size Y should be about 813, X can be wherever you want along the bottom
+// If you reduce the image height, be sure to add the difference back to Y
+// The blue numbers are X, then Y position, followed by Width and Height in pixels
 static void ui_draw_waifu1(UIState *s) {
-  const int waifu1_size = 125;
-  const int waifu1_x = (s->scene.ui_viz_rx + (waifu1_size * 4.5) + (bdr_is * 6));
-  const int waifu1_y = (footer_y + ((footer_h - waifu1_size) / 2));
-  ui_draw_circle_image(s->vg, waifu1_x, waifu1_y+border_shifter+25, waifu1_size-5, s->img_waifu1, 1); 
+  // const int waifu1_size = 125;
+  // const int waifu1_x = (s->scene.ui_viz_rx + (waifu1_size * 4.5) + (bdr_is * 6));
+  // const int waifu1_y = (footer_y + ((footer_h - waifu1_size) / 2));
+  // ui_draw_circle_image(s->vg, waifu1_x, waifu1_y+border_shifter+25, waifu1_size-5, s->img_waifu1, 1);
+  ui_draw_image(s->vg, 660, 813, 267, 267, s->img_waifu1, 1); // Let's use some magic numbers for now
 }
 static void ui_draw_waifu2(UIState *s) {
   // const int waifu2_size = 125;
