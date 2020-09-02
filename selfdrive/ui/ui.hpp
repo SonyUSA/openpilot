@@ -114,6 +114,8 @@ typedef struct UIScene {
   int ui_viz_rx;
   int ui_viz_rw;
   int ui_viz_ro;
+  
+  bool waifu1_valid; //spaghetti code for waifus -SonyUSA
 
   int lead_status;
   float lead_d_rel, lead_v_rel;
