@@ -587,8 +587,8 @@ static void ui_draw_waifu1(UIState *s) {
   const int waifu1_size = 100;
   const int waifu1_x = (s->scene.ui_viz_rx + (waifu1_size * 8) + (bdr_is * 6));
   const int waifu1_y = (footer_y + ((footer_h - waifu1_size) / 2));
-  ui_draw_circle_image(s->vg, waifu1_x, waifu1_y+border_shifter+25, waifu1_size-5, s->img_waifu1, 1); // fingers crossed
-  // float waifu1_img_alpha = brake_valid ? 1.0f : 0.15f; // Don't look at this line
+  ui_draw_image(s->vg, waifu1_x, waifu1_y+border_shifter+25, waifu1_size-5, s->img_waifu1, 1); // fingers crossed
+  // ui_draw_circle_image(s->vg, waifu1_x, waifu1_y+border_shifter+25, waifu1_size-5, s->img_waifu1, 1); // circle draw
 }
 // End of waifus
 
