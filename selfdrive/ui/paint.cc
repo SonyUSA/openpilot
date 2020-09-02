@@ -584,11 +584,16 @@ static void ui_draw_vision_map(UIState *s) {
 
 // This looks like a good spot for waifu code!
 static void ui_draw_waifu1(UIState *s) {
-  const int waifu1_size = 150;
-  const int waifu1_x = (s->scene.ui_viz_rx + (waifu1_size * 6) + (bdr_is * 6));
+  const int waifu1_size = 125;
+  const int waifu1_x = (s->scene.ui_viz_rx + (waifu1_size * 4.5) + (bdr_is * 6));
   const int waifu1_y = (footer_y + ((footer_h - waifu1_size) / 2));
-  // ui_draw_image(s->vg, waifu1_x, waifu1_y+border_shifter+25, waifu1_size-5, s->img_waifu1, 1); // fingers crossed
-  ui_draw_circle_image(s->vg, waifu1_x, waifu1_y+border_shifter+25, waifu1_size-5, s->img_waifu1, 1); // no matching function for call
+  ui_draw_circle_image(s->vg, waifu1_x, waifu1_y+border_shifter+25, waifu1_size-5, s->img_waifu1, 1); 
+}
+static void ui_draw_waifu2(UIState *s) {
+  const int waifu2_size = 125;
+  const int waifu2_x = (s->scene.ui_viz_rx + (waifu1_size * 5.5) + (bdr_is * 6));
+  const int waifu2_y = (footer_y + ((footer_h - waifu2_size) / 2));
+  ui_draw_circle_image(s->vg, waifu2_x, waifu2_y+border_shifter+25, waifu2_size-5, s->img_waifu2, 1); 
 }
 // End of waifus
 
@@ -658,7 +663,7 @@ static void ui_draw_driver_view(UIState *s) {
 static void ui_draw_vision_brake(UIState *s) { //We should probably refactor this to use ui_draw_circle_image() -wirelessnet2
   const UIScene *scene = &s->scene;
   const int brake_size = 100; //made the Brake Icon a bit smaller -wirelessnet2 (now bigger again! -SonyUSA)
-  const int brake_x = (scene->ui_viz_rx + (brake_size * 3) + (bdr_is * 1.5)); //Xayah should be next to Rakan! -SonyUSA
+  const int brake_x = (scene->ui_viz_rx + (brake_size * 3) + (bdr_is * 1.7)); //Xayah should be next to Rakan! -SonyUSA
   const int brake_y = (footer_y + ((footer_h - brake_size) / 2));
   const int brake_img_size = (brake_size * 1.5);
   const int brake_img_x = (brake_x - (brake_img_size / 2));
@@ -1011,6 +1016,7 @@ static void ui_draw_vision_footer(UIState *s) {
   ui_draw_vision_face(s);
   ui_draw_vision_brake(s);
   ui_draw_waifu1(s); //I'll just leave this here... -SonyUSA
+  ui_draw_waifu2(s);
 
 #ifdef SHOW_SPEEDLIMIT
   // ui_draw_vision_map(s);
@@ -1256,8 +1262,8 @@ void ui_nvg_init(UIState *s) {
   //Let's add some waifus! -SonyUSA
   s->img_waifu1 = nvgCreateImage(s->vg, "../assets/waifu1.png", 1);
   assert(s->img_waifu1 != 0);
-  // s->img_waifu2 = nvgCreateImage(s->vg, "../assets/waifu2.png", 1);
-  // assert(s->img_waifu2 != 0);
+  s->img_waifu2 = nvgCreateImage(s->vg, "../assets/waifu2.png", 1);
+  assert(s->img_waifu2 != 0);
   // s->img_waifu3 = nvgCreateImage(s->vg, "../assets/waifu3.png", 1);
   // assert(s->img_waifu3 != 0);
   
