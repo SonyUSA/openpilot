@@ -587,8 +587,8 @@ static void ui_draw_waifu1(UIState *s) {
   const int waifu1_size = 100;
   const int waifu1_x = (s->scene.ui_viz_rx + (waifu1_size * 8) + (bdr_is * 6));
   const int waifu1_y = (footer_y + ((footer_h - waifu1_size) / 2));
-  ui_draw_circle_image(s->vg, waifu1_x, waifu1_y+border_shifter+25, waifu1_size-5, s->img_waifu1, s->scene.waifu1_valid);
-  float waifu1_img_alpha = brake_valid ? 1.0f : 0.15f; // Don't look at this line
+  ui_draw_circle_image(s->vg, waifu1_x, waifu1_y+border_shifter+25, waifu1_size-5, s->img_waifu1, 1); // fingers crossed
+  // float waifu1_img_alpha = brake_valid ? 1.0f : 0.15f; // Don't look at this line
 }
 // End of waifus
 
@@ -658,7 +658,7 @@ static void ui_draw_driver_view(UIState *s) {
 static void ui_draw_vision_brake(UIState *s) { //We should probably refactor this to use ui_draw_circle_image() -wirelessnet2
   const UIScene *scene = &s->scene;
   const int brake_size = 100; //made the Brake Icon a bit smaller -wirelessnet2 (now bigger again! -SonyUSA)
-  const int brake_x = (scene->ui_viz_rx + (brake_size * 5) + (bdr_is * 1.5)); //Xayah should be next to Rakan! -SonyUSA
+  const int brake_x = (scene->ui_viz_rx + (brake_size * 5) + (bdr_is * 0.5)); //Xayah should be next to Rakan! -SonyUSA
   const int brake_y = (footer_y + ((footer_h - brake_size) / 2));
   const int brake_img_size = (brake_size * 1.5);
   const int brake_img_x = (brake_x - (brake_img_size / 2));
