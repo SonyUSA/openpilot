@@ -1009,7 +1009,7 @@ static void ui_draw_vision_footer(UIState *s) {
 
   ui_draw_vision_face(s);
   ui_draw_vision_brake(s);
-  ui_draw_waifu1(s); //I'll just leave this here... -SonyUSA
+  //ui_draw_waifu1(s); //I'll just leave this here... -SonyUSA
 
 #ifdef SHOW_SPEEDLIMIT
   // ui_draw_vision_map(s);
