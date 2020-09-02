@@ -601,7 +601,7 @@ static void ui_draw_waifu2(UIState *s) {
   // const int waifu2_y = (footer_y + ((footer_h - waifu2_size) / 2));
   // ui_draw_circle_image(s->vg, waifu2_x, waifu2_y+border_shifter+25, waifu2_size-5, s->img_waifu2, 1);
   // ui_draw_image(s->vg, waifu2_x, waifu2_y+border_shifter+25, waifu2_size-5, 250, s->img_waifu2, 1);
-  ui_draw_image(s->vg, 1060, 813, 267, 267, s->img_waifu2, 1); // Let's use some magic numbers for now
+  ui_draw_image(s->vg, 960, 867, 213, 213, s->img_waifu2, 1); // Let's use some magic numbers for now
 }
 // End of waifus
 
