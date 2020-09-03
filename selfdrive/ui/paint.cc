@@ -588,6 +588,7 @@ static void ui_draw_vision_map(UIState *s) {
 // At full size Y should be about 813, X can be wherever you want along the bottom
 // If you reduce the image height, be sure to add the difference back to Y
 // The blue numbers are X, then Y position, followed by Width and Height in pixels
+//
 static void ui_draw_waifu1(UIState *s) {
   // const int waifu1_size = 125;
   // const int waifu1_x = (s->scene.ui_viz_rx + (waifu1_size * 4.5) + (bdr_is * 6));
@@ -599,7 +600,7 @@ static void ui_draw_waifu2(UIState *s) {
   ui_draw_image(s->vg, 960, 867, 213, 213, s->img_waifu2, 1);
 }
 static void ui_draw_waifu3(UIState *s) {
-  ui_draw_image(s->vg, 1500, 867, 213, 213, s->img_waifu3, 1);
+  ui_draw_image(s->vg, 1450, 867, 213, 213, s->img_waifu3, 1);
 }
 // End of waifus
 
