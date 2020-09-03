@@ -115,9 +115,6 @@ typedef struct UIScene {
   int ui_viz_rw;
   int ui_viz_ro;
   
-  // This shouldn't be needed now... -SonyUSA
-  // bool waifu1_valid; 
-
   int lead_status;
   float lead_d_rel, lead_v_rel;
 
