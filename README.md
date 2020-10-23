@@ -1,1 +1,1 @@
-either you know what you are doing, or you dont. No instructions!!!
+Either you know what you are doing, or you don't. No instructions!!!
