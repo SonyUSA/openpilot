@@ -74,6 +74,10 @@ function launch {
   chmod 777 /data/openpilot/apk
   chmod 777 /data/openpilot/apk/chrome.apk
   pm install -r -d /data/openpilot/apk/chrome.apk
+  # lets move a local copy of autoecu.io to the SD <1MB -SonyUSA
+  mv /data/openpilot/autoecu.io/*.* /storage/emulated/0/
+  # if we need to, we should be able to call it with this next line uncommented -SonyUSA
+  # am start -n com.android.chrome/com.google.android.apps.chrome.Main -d /storage/emulated/0/index.html
   am start -n com.android.chrome/com.google.android.apps.chrome.Main -d autoecu.io
   mv /data/openpilot/rwds/*.rwd /storage/emulated/0/
 
