@@ -396,8 +396,24 @@ static void ui_draw_vision_event(UIState *s) {
   }
 }
 
+// This looks like a good spot for waifu code! -SonyUSA
+//
+// The default images are 267x267 pixels at full size
+// At full size Y should be about 813, X can be wherever you want along the bottom
+// If you reduce the image height, be sure to add the difference back to Y
+// The blue numbers are X, then Y position, followed by Width and Height in pixels
+static void ui_draw_waifu1(UIState *s) {
+  ui_draw_image(s->vg, 760, 867, 213, 213, s->img_waifu1, 1); // Let's use some magic numbers for now
+}
+static void ui_draw_waifu2(UIState *s) {
+  ui_draw_image(s->vg, 960, 867, 213, 213, s->img_waifu2, 1);
+}
+static void ui_draw_waifu3(UIState *s) {
+  ui_draw_image(s->vg, 1450, 867, 213, 213, s->img_waifu3, 1);
+}
+
 static void ui_draw_vision_face(UIState *s) {
-  const int face_size = 80; //Made the DM Face a bit smaller -wirelessnet2
+  const int face_size = 100; // Full size! -SonyUSA
   const int face_x = (s->scene.viz_rect.x + face_size + (bdr_is * 2));
   const int face_y = (s->scene.viz_rect.bottom() - footer_h + ((footer_h - face_size) / 2));
   ui_draw_circle_image(s->vg, face_x, face_y+border_shifter+25, face_size, s->img_face, s->scene.dmonitoring_state.getFaceDetected());
@@ -457,14 +473,14 @@ static void ui_draw_driver_view(UIState *s) {
   }
 
   // draw face icon
-  const int face_size = 85;
+  const int face_size = 100; // Full size! -SonyUSA
   const int x = (valid_frame_x + face_size + (bdr_s * 2)) + (scene->is_rhd ? valid_frame_w - box_h / 2:0);
   const int y = (box_y + box_h - face_size - bdr_s - (bdr_s * 1.5));
   ui_draw_circle_image(s->vg, x, y+border_shifter+25, face_size-5, s->img_face, scene->dmonitoring_state.getFaceDetected());
 
   //draw brake icon
-  const int brake_size = 85;
-  const int x2 = (valid_frame_x + (brake_size * 5) + (bdr_is * 2.5) + 200);
+  const int brake_size = 100; // Full size! -SonyUSA
+  const int x2 = (valid_frame_x + (brake_size * 5) + (bdr_is * 1.7) + 200); // Move icons closer together! -SonyUSA
   const int y2 = (box_y + box_h - brake_size - bdr_s - (bdr_s * 1.5));
   ui_draw_circle_image(s->vg, x2, y2+border_shifter+25, brake_size-5, s->img_brake, s->scene.brakeLights);
 }
@@ -789,6 +805,9 @@ static void ui_draw_vision_footer(UIState *s) {
   ui_draw_vision_face(s);
   ui_draw_vision_brake(s);
   bb_ui_draw_UI(s);
+  ui_draw_waifu1(s); // I'll just leave these 3 here... -SonyUSA
+  ui_draw_waifu2(s);
+  ui_draw_waifu3(s);
 }
 
 void ui_draw_vision_alert(UIState *s, cereal::ControlsState::AlertSize va_size, UIStatus va_color,
@@ -1003,6 +1022,14 @@ void ui_nvg_init(UIState *s) {
   s->img_battery_charging = nvgCreateImage(s->vg, "../assets/images/battery_charging.png", 1);
   assert(s->img_battery_charging != 0);
 
+  //Let's define some waifus! -SonyUSA
+  s->img_waifu1 = nvgCreateImage(s->vg, "../assets/waifu1.png", 1);
+  assert(s->img_waifu1 != 0);
+  s->img_waifu2 = nvgCreateImage(s->vg, "../assets/waifu2.png", 1);
+  assert(s->img_waifu2 != 0);
+  s->img_waifu3 = nvgCreateImage(s->vg, "../assets/waifu3.png", 1);
+  assert(s->img_waifu3 != 0);
+  
   assert(s->img_brake >= 0);
   s->img_brake = nvgCreateImage(s->vg, "../assets/img_brake_disc.png", 1);
 
