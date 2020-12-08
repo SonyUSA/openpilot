@@ -716,10 +716,11 @@ static void bb_ui_draw_measures_right(UIState *s, int bb_x, int bb_y, int bb_w )
     NVGcolor val_color = nvgRGBA(255, 255, 255, 200);
       //show Orange if more than 6 degrees
       //show red if  more than 12 degrees
-      if(((int)(s->scene.angleSteers) < -6) || ((int)(s->scene.angleSteers) > 6)) {
+      // Let's be a little more aggressive at 12/18 ! -SonyUSA
+      if(((int)(s->scene.angleSteers) < -12) || ((int)(s->scene.angleSteers) > 6)) {
         val_color = nvgRGBA(255, 188, 3, 200);
       }
-      if(((int)(s->scene.angleSteers) < -12) || ((int)(s->scene.angleSteers) > 12)) {
+      if(((int)(s->scene.angleSteers) < -18) || ((int)(s->scene.angleSteers) > 12)) {
         val_color = nvgRGBA(255, 0, 0, 200);
       }
       // steering is in degrees
