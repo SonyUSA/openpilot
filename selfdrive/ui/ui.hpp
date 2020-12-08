@@ -182,6 +182,11 @@ typedef struct UIState {
   int img_battery_charging;
   int img_network[6];
   int img_brake;
+  
+  // Waifus! -SonyUSA
+  int img_waifu1;
+  int img_waifu2;
+  int img_waifu3;
 
   SubMaster *sm;
 
