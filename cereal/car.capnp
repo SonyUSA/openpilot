@@ -341,6 +341,7 @@ struct CarControl {
       chimeWarningRepeat @6;
       chimePrompt @7;
       chimeWarning2Repeat @8;
+      chimeDriver @9; # Custom driver alert -SonyUSA
     }
   }
 }
