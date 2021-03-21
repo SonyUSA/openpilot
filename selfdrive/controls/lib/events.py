@@ -352,12 +352,13 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
       Priority.LOW, VisualAlert.steerRequired, AudibleAlert.none, .0, .1, .1),
   },
 
+  # Lets make this a little more weaboo with a custom alert! -SonyUSA
   EventName.promptDriverDistracted: {
     ET.WARNING: Alert(
-      "KEEP EYES ON ROAD",
+      "PAY ATTENTION, DINGUS!",
       "Driver Distracted",
       AlertStatus.userPrompt, AlertSize.mid,
-      Priority.MID, VisualAlert.steerRequired, AudibleAlert.chimeWarning2Repeat, .1, .1, .1),
+      Priority.MID, VisualAlert.steerRequired, AudibleAlert.chimeDriver, .1, .1, .1),
   },
 
   EventName.driverDistracted: {
