@@ -338,13 +338,13 @@ static void ui_draw_driver_view(UIState *s) {
 // If you reduce the image height, be sure to add the difference back to Y
 // The blue numbers are X, then Y position, followed by Width and Height in pixels
 static void ui_draw_waifu1(UIState *s) {
-  ui_draw_image(s->vg, 760, 867, 213, 213, s->img_waifu1, 1); // Let's use some magic numbers for now
+  ui_draw_image2(s->vg, 760, 867, 213, 213, s->img_waifu1, 1); // Let's use some magic numbers for now
 }
 static void ui_draw_waifu2(UIState *s) {
-  ui_draw_image(s->vg, 960, 867, 213, 213, s->img_waifu2, 1);
+  ui_draw_image2(s->vg, 960, 867, 213, 213, s->img_waifu2, 1);
 }
 static void ui_draw_waifu3(UIState *s) {
-  ui_draw_image(s->vg, 1450, 867, 213, 213, s->img_waifu3, 1);
+  ui_draw_image2(s->vg, 1450, 867, 213, 213, s->img_waifu3, 1);
 }
 
 static void ui_draw_vision_header(UIState *s) {
@@ -789,6 +789,14 @@ void ui_draw_image(const UIState *s, const Rect &r, const char *name, float alph
   nvgRect(s->vg, r.x, r.y, r.w, r.h);
   nvgFillPaint(s->vg, imgPaint);
   nvgFill(s->vg);
+}
+
+void ui_draw_image2(NVGcontext *vg, float x, float y, float w, float h, int image, float alpha){
+  nvgBeginPath(vg);
+  NVGpaint imgPaint = nvgImagePattern(vg, x, y, w, h, 0, image, alpha);
+  nvgRect(vg, x, y, w, h);
+  nvgFillPaint(vg, imgPaint);
+  nvgFill(vg);
 }
 
 void ui_draw_rect(NVGcontext *vg, const Rect &r, NVGcolor color, int width, float radius) {
