@@ -302,13 +302,19 @@ static void ui_draw_vision_brake(UIState *s) {
   ui_draw_circle_image(s, brake_x, brake_y+border_shifter+25, brake_size, "brake_disk", s->scene.brakeLights);
 }
 
-// New draw waifu code test! -SonyUSA
+// New draw code waifu test! -SonyUSA
 static void ui_draw_waifu1(UIState *s) {
   const int waifu1_size = 100; 
   const int waifu1_x = (s->viz_rect.x + waifu1_size + (bdr_is * 2) + 300); 
   const int waifu1_y = (s->viz_rect.bottom() - footer_h + ((footer_h - waifu1_size) / 2));
   ui_draw_sprite(s, waifu1_x, waifu1_y+border_shifter+25, waifu1_size, "waifu1", 1);
 }
+// Test works, now let's try using static magic number so sprites don't move when the side drawer expands and collapses -SonyUSA
+// The default images are 267x267 pixels at full size
+// At full size Y should be about 813, X can be wherever you want along the bottom
+// If you reduce the image height, be sure to add the difference back to Y
+static void ui_draw_waifu2(UIState *s) { ui_draw_sprite(s, 960, 867, 100, "waifu2", 1); }
+static void ui_draw_waifu3(UIState *s) { ui_draw_sprite(s, 960, 867, 100, "waifu3", 1); }
 
 static void ui_draw_driver_view(UIState *s) {
   s->sidebar_collapsed = true;
