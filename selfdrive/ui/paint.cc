@@ -331,22 +331,6 @@ static void ui_draw_driver_view(UIState *s) {
   ui_draw_circle_image(s, icon_x + 200, icon_y+border_shifter+25, face_size-5, "brake_disk", s->scene.brakeLights);
 }
 
-// This looks like a good spot for waifu code! -SonyUSA
-//
-// The default images are 267x267 pixels at full size
-// At full size Y should be about 813, X can be wherever you want along the bottom
-// If you reduce the image height, be sure to add the difference back to Y
-// The blue numbers are X, then Y position, followed by Width and Height in pixels
-static void ui_draw_waifu1(UIState *s) {
-  ui_draw_image2(s->vg, 760, 867, 213, 213, s->img_waifu1, 1); // Let's use some magic numbers for now
-}
-static void ui_draw_waifu2(UIState *s) {
-  ui_draw_image2(s->vg, 960, 867, 213, 213, s->img_waifu2, 1);
-}
-static void ui_draw_waifu3(UIState *s) {
-  ui_draw_image2(s->vg, 1450, 867, 213, 213, s->img_waifu3, 1);
-}
-
 static void ui_draw_vision_header(UIState *s) {
   NVGpaint gradient = nvgLinearGradient(s->vg, s->viz_rect.x,
                         s->viz_rect.y+(header_h-(header_h/2.5)),
@@ -791,14 +775,6 @@ void ui_draw_image(const UIState *s, const Rect &r, const char *name, float alph
   nvgFill(s->vg);
 }
 
-void ui_draw_image2(NVGcontext *vg, float x, float y, float w, float h, int image, float alpha){
-  nvgBeginPath(vg);
-  NVGpaint imgPaint = nvgImagePattern(vg, x, y, w, h, 0, image, alpha);
-  nvgRect(vg, x, y, w, h);
-  nvgFillPaint(vg, imgPaint);
-  nvgFill(vg);
-}
-
 void ui_draw_rect(NVGcontext *vg, const Rect &r, NVGcolor color, int width, float radius) {
   nvgBeginPath(vg);
   radius > 0 ? nvgRoundedRect(vg, r.x, r.y, r.w, r.h, radius) : nvgRect(vg, r.x, r.y, r.w, r.h);
@@ -903,19 +879,14 @@ void ui_nvg_init(UIState *s) {
       {"network_3", "../assets/images/network_3.png"},
       {"network_4", "../assets/images/network_4.png"},
       {"network_5", "../assets/images/network_5.png"},
+      {"waifu1", "../assets/waifu1.png"},
+      {"waifu2", "../assets/waifu2.png"},
+      {"waifu3", "../assets/waifu3.png"},
   };
   for (auto [name, file] : images) {
     s->images[name] = nvgCreateImage(s->vg, file, 1);
     assert(s->images[name] != 0);
   }
-
-  //Let's define some waifus! -SonyUSA
-  s->img_waifu1 = nvgCreateImage(s->vg, "../assets/waifu1.png", 1);
-  assert(s->img_waifu1 != 0);
-  s->img_waifu2 = nvgCreateImage(s->vg, "../assets/waifu2.png", 1);
-  assert(s->img_waifu2 != 0);
-  s->img_waifu3 = nvgCreateImage(s->vg, "../assets/waifu3.png", 1);
-  assert(s->img_waifu3 != 0);
   
   // init gl
   s->gl_shader = std::make_unique<GLShader>(frame_vertex_shader, frame_fragment_shader);
