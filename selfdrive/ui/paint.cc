@@ -338,17 +338,14 @@ static void ui_draw_driver_view(UIState *s) {
 // If you reduce the image height, be sure to add the difference back to Y
 // The blue numbers are X, then Y position, followed by Width and Height in pixels
 static void ui_draw_waifu1(UIState *s) {
-  ui_draw_image(s->vg, 760, 867, 213, 213, "waifu1", 1); // Let's use some magic numbers for now
+  ui_draw_image(s->vg, 760, 867, 213, 213, s->img_waifu1, 1); // Let's use some magic numbers for now
 }
-//static void ui_draw_waifu1(UIState *s) {
-//  ui_draw_image(s->vg, 760, 867, 213, 213, s->img_waifu1, 1); // Let's use some magic numbers for now
-//}
-//static void ui_draw_waifu2(UIState *s) {
-//  ui_draw_image(s->vg, 960, 867, 213, 213, s->img_waifu2, 1);
-//}
-//static void ui_draw_waifu3(UIState *s) {
-//  ui_draw_image(s->vg, 1450, 867, 213, 213, s->img_waifu3, 1);
-//}
+static void ui_draw_waifu2(UIState *s) {
+  ui_draw_image(s->vg, 960, 867, 213, 213, s->img_waifu2, 1);
+}
+static void ui_draw_waifu3(UIState *s) {
+  ui_draw_image(s->vg, 1450, 867, 213, 213, s->img_waifu3, 1);
+}
 
 static void ui_draw_vision_header(UIState *s) {
   NVGpaint gradient = nvgLinearGradient(s->vg, s->viz_rect.x,
@@ -671,8 +668,8 @@ static void ui_draw_vision_footer(UIState *s) {
   ui_draw_vision_brake(s);
   bb_ui_draw_UI(s);
   ui_draw_waifu1(s); // I'll just leave these 3 here... -SonyUSA
-  //ui_draw_waifu2(s);
-  //ui_draw_waifu3(s);
+  ui_draw_waifu2(s);
+  ui_draw_waifu3(s);
 }
 
 static float get_alert_alpha(float blink_rate) {
@@ -898,9 +895,9 @@ void ui_nvg_init(UIState *s) {
       {"network_3", "../assets/images/network_3.png"},
       {"network_4", "../assets/images/network_4.png"},
       {"network_5", "../assets/images/network_5.png"},
-      {"waifu1", "../assets/waifu1.png"},
-      //{"img_waifu2", "../assets/waifu2.png"},
-      //{"img_waifu3", "../assets/waifu3.png"},
+      {"img_waifu1", "../assets/waifu1.png"},
+      {"img_waifu2", "../assets/waifu2.png"},
+      {"img_waifu3", "../assets/waifu3.png"},
   };
   for (auto [name, file] : images) {
     s->images[name] = nvgCreateImage(s->vg, file, 1);
