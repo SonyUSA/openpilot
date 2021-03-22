@@ -295,7 +295,7 @@ static void ui_draw_waifu1(UIState *s) {
   const int waifu1_size = 100; 
   const int waifu1_x = (s->viz_rect.x + waifu1_size + (bdr_is * 2) + 300); 
   const int waifu1_y = (s->viz_rect.bottom() - footer_h + ((footer_h - waifu1_size) / 2));
-  ui_draw_image(s, waifu1_x, waifu1_y+border_shifter+25, waifu1_size, "waifu1", 1);
+  ui_draw_circle_image(s, waifu1_x, waifu1_y+border_shifter+25, waifu1_size, "waifu1", 1);
 }
 
 static void ui_draw_driver_view(UIState *s) {
@@ -660,8 +660,8 @@ static void ui_draw_vision_footer(UIState *s) {
   ui_draw_vision_brake(s);
   bb_ui_draw_UI(s);
   ui_draw_waifu1(s); // I'll just leave these 3 here... -SonyUSA
-  ui_draw_waifu2(s);
-  ui_draw_waifu3(s);
+  //ui_draw_waifu2(s);
+  //ui_draw_waifu3(s);
 }
 
 static float get_alert_alpha(float blink_rate) {
