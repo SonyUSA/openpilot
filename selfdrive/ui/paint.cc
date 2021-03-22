@@ -290,6 +290,14 @@ static void ui_draw_vision_brake(UIState *s) {
   ui_draw_circle_image(s, brake_x, brake_y+border_shifter+25, brake_size, "brake_disk", s->scene.brakeLights);
 }
 
+// New draw waifu code test! -SonyUSA
+static void ui_draw_waifu1(UIState *s) {
+  const int waifu1_size = 100; 
+  const int waifu1_x = (s->viz_rect.x + waifu1_size + (bdr_is * 2) + 300); 
+  const int waifu1_y = (s->viz_rect.bottom() - footer_h + ((footer_h - waifu1_size) / 2));
+  ui_draw_image(s, waifu1_x, waifu1_y+border_shifter+25, waifu1_size, "waifu1", 1);
+}
+
 static void ui_draw_driver_view(UIState *s) {
   s->sidebar_collapsed = true;
   const bool is_rhd = s->scene.is_rhd;
