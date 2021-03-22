@@ -678,8 +678,8 @@ static void ui_draw_vision_footer(UIState *s) {
   ui_draw_vision_brake(s);
   bb_ui_draw_UI(s);
   ui_draw_waifu1(s); // I'll just leave these 3 here... -SonyUSA
-  //ui_draw_waifu2(s);
-  //ui_draw_waifu3(s);
+  ui_draw_waifu2(s);
+  ui_draw_waifu3(s);
 }
 
 static float get_alert_alpha(float blink_rate) {
