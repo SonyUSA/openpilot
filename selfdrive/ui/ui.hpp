@@ -179,11 +179,6 @@ typedef struct UIState {
 
   GLuint frame_vao[2], frame_vbo[2], frame_ibo[2];
   mat4 rear_frame_mat, front_frame_mat;
-
-  // Waifus! -SonyUSA
-  int img_waifu1;
-  int img_waifu2;
-  int img_waifu3;
   
   // device state
   bool awake;
