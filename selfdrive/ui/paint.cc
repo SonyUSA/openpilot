@@ -314,9 +314,9 @@ static void ui_draw_vision_brake(UIState *s) {
 // The default images are 267x267 pixels at full size
 // At full size Y should be about 813, X can be wherever you want along the bottom
 // If you reduce the image height, be sure to add the difference back to Y
-static void ui_draw_waifu1(UIState *s) { ui_draw_sprite(s, 760, 680, 150, "waifu1", 1); }
-static void ui_draw_waifu2(UIState *s) { ui_draw_sprite(s, 960, 680, 150, "waifu2", 1); }
-static void ui_draw_waifu3(UIState *s) { ui_draw_sprite(s, 1450, 680, 150, "waifu3", 1); }
+static void ui_draw_waifu1(UIState *s) { ui_draw_sprite(s, 760, 1080, 150, "waifu1", 1); }
+static void ui_draw_waifu2(UIState *s) { ui_draw_sprite(s, 960, 1080, 150, "waifu2", 1); }
+static void ui_draw_waifu3(UIState *s) { ui_draw_sprite(s, 1450, 1080, 150, "waifu3", 1); }
 
 static void ui_draw_driver_view(UIState *s) {
   s->sidebar_collapsed = true;
