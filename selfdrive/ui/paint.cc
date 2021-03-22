@@ -671,8 +671,8 @@ static void ui_draw_vision_footer(UIState *s) {
   ui_draw_vision_brake(s);
   bb_ui_draw_UI(s);
   ui_draw_waifu1(s); // I'll just leave these 3 here... -SonyUSA
-  ui_draw_waifu2(s);
-  ui_draw_waifu3(s);
+  //ui_draw_waifu2(s);
+  //ui_draw_waifu3(s);
 }
 
 static float get_alert_alpha(float blink_rate) {
@@ -899,8 +899,8 @@ void ui_nvg_init(UIState *s) {
       {"network_4", "../assets/images/network_4.png"},
       {"network_5", "../assets/images/network_5.png"},
       {"waifu1", "../assets/waifu1.png"},
-      {"img_waifu2", "../assets/waifu2.png"},
-      {"img_waifu3", "../assets/waifu3.png"},
+      //{"img_waifu2", "../assets/waifu2.png"},
+      //{"img_waifu3", "../assets/waifu3.png"},
   };
   for (auto [name, file] : images) {
     s->images[name] = nvgCreateImage(s->vg, file, 1);
