@@ -898,7 +898,7 @@ void ui_nvg_init(UIState *s) {
       {"network_3", "../assets/images/network_3.png"},
       {"network_4", "../assets/images/network_4.png"},
       {"network_5", "../assets/images/network_5.png"},
-      {"img_waifu1", "../assets/waifu1.png"},
+      {"waifu1", "../assets/waifu1.png"},
       {"img_waifu2", "../assets/waifu2.png"},
       {"img_waifu3", "../assets/waifu3.png"},
   };
