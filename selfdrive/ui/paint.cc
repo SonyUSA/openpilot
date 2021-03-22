@@ -96,6 +96,12 @@ static void ui_draw_circle_image(const UIState *s, int x, int y, int size, const
   ui_draw_image(s, {x - (img_size / 2), img_y ? img_y : y - (size / 4), img_size, img_size}, image, img_alpha);
 }
 
+// Let's try a custom function since SOMEONE broke draw_image... -SonyUSA
+static void ui_draw_sprite(const UIState *s, int x, int y, int size, const char *image, NVGcolor color, float img_alpha, int img_y = 0) {
+  const int img_size = size * 1.5;
+  ui_draw_image(s, {x - (img_size / 2), img_y ? img_y : y - (size / 4), img_size, img_size}, image, img_alpha);
+}
+
 static void ui_draw_circle_image(const UIState *s, int x, int y, int size, const char *image, bool active) {
   float bg_alpha = active ? 0.3f : 0.1f;
   float img_alpha = active ? 1.0f : 0.15f;
@@ -295,7 +301,7 @@ static void ui_draw_waifu1(UIState *s) {
   const int waifu1_size = 100; 
   const int waifu1_x = (s->viz_rect.x + waifu1_size + (bdr_is * 2) + 300); 
   const int waifu1_y = (s->viz_rect.bottom() - footer_h + ((footer_h - waifu1_size) / 2));
-  ui_draw_circle_image(s, waifu1_x, waifu1_y+border_shifter+25, waifu1_size, "waifu1", 1);
+  ui_draw_sprite(s, waifu1_x, waifu1_y+border_shifter+25, waifu1_size, "waifu1", 1);
 }
 
 static void ui_draw_driver_view(UIState *s) {
