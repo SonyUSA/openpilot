@@ -96,16 +96,22 @@ static void ui_draw_circle_image(const UIState *s, int x, int y, int size, const
   ui_draw_image(s, {x - (img_size / 2), img_y ? img_y : y - (size / 4), img_size, img_size}, image, img_alpha);
 }
 
+static void ui_draw_circle_image(const UIState *s, int x, int y, int size, const char *image, bool active) {
+  float bg_alpha = active ? 0.3f : 0.1f;
+  float img_alpha = active ? 1.0f : 0.15f;
+  ui_draw_circle_image(s, x, y, size, image, nvgRGBA(0, 0, 0, (255 * bg_alpha)), img_alpha);
+}
+
 // Let's try a custom function since SOMEONE broke draw_image... -SonyUSA
 static void ui_draw_sprite(const UIState *s, int x, int y, int size, const char *image, NVGcolor color, float img_alpha, int img_y = 0) {
   const int img_size = size * 1.5;
   ui_draw_image(s, {x - (img_size / 2), img_y ? img_y : y - (size / 4), img_size, img_size}, image, img_alpha);
 }
-
-static void ui_draw_circle_image(const UIState *s, int x, int y, int size, const char *image, bool active) {
+// Part 2 -SonyUSA
+static void ui_draw_sprite(const UIState *s, int x, int y, int size, const char *image, bool active) {
   float bg_alpha = active ? 0.3f : 0.1f;
   float img_alpha = active ? 1.0f : 0.15f;
-  ui_draw_circle_image(s, x, y, size, image, nvgRGBA(0, 0, 0, (255 * bg_alpha)), img_alpha);
+  ui_draw_sprite(s, x, y, size, image, nvgRGBA(0, 0, 0, (255 * bg_alpha)), img_alpha);
 }
 
 static void draw_lead(UIState *s, int idx){
