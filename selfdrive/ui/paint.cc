@@ -277,16 +277,16 @@ static void ui_draw_vision_event(UIState *s) {
 }
 
 static void ui_draw_vision_face(UIState *s) {
-  const int face_size = 80; //Made the DM Face a bit smaller -wirelessnet2
+  const int face_size = 100; // Full size! -SonyUSA
   const int face_x = (s->viz_rect.x + face_size + (bdr_is * 2));
   const int face_y = (s->viz_rect.bottom() - footer_h + ((footer_h - face_size) / 2));
   ui_draw_circle_image(s, face_x, face_y+border_shifter+25, face_size, "driver_face", s->scene.dmonitoring_state.getIsActiveMode());
 }
 
 static void ui_draw_vision_brake(UIState *s) {
-  const int brake_size = 80;
-  const int brake_x = (s->viz_rect.x + brake_size + (bdr_is * 2) + 255); //That 55 is kinda random -wirelessnet2
-  const int brake_y = (s->viz_rect.bottom() - footer_h + ((footer_h - brake_size) / 2));
+  const int brake_size = 100; // Full size! -SonyUSA
+  const int brake_x = (s->viz_rect.x + brake_size + (bdr_is * 1.7) + 200); // Move icons closer together! -SonyUSA
+  const int brake_y = (s->viz_rect.bottom() - footer_h + ((footer_h - f) / 2));
   ui_draw_circle_image(s, brake_x, brake_y+border_shifter+25, brake_size, "brake_disk", s->scene.brakeLights);
 }
 
@@ -323,8 +323,24 @@ static void ui_draw_driver_view(UIState *s) {
     ui_draw_rect(s->vg, {fbox_x - box_size / 2, fbox_y - box_size / 2, box_size, box_size}, nvgRGBAf(1.0, 1.0, 1.0, alpha), 10, 35.);
   }
 
+  // This looks like a good spot for waifu code! -SonyUSA
+  //
+  // The default images are 267x267 pixels at full size
+  // At full size Y should be about 813, X can be wherever you want along the bottom
+  // If you reduce the image height, be sure to add the difference back to Y
+  // The blue numbers are X, then Y position, followed by Width and Height in pixels
+  static void ui_draw_waifu1(UIState *s) {
+    ui_draw_image(s->vg, 760, 867, 213, 213, s->img_waifu1, 1); // Let's use some magic numbers for now
+  }
+  static void ui_draw_waifu2(UIState *s) {
+    ui_draw_image(s->vg, 960, 867, 213, 213, s->img_waifu2, 1);
+  }
+  static void ui_draw_waifu3(UIState *s) {
+    ui_draw_image(s->vg, 1450, 867, 213, 213, s->img_waifu3, 1);
+  }
+  
   // draw face icon
-  const int face_size = 85;
+  const int face_size = 100; // Full size! -SonyUSA
   const int icon_x = is_rhd ? rect.right() - face_size - bdr_is * 2 : rect.x + face_size + bdr_is * 2;
   const int icon_y = rect.bottom() - face_size - bdr_s * 2.5;
   ui_draw_circle_image(s, icon_x, icon_y+border_shifter+25, face_size, "driver_face", face_detected);
@@ -586,10 +602,11 @@ static void bb_ui_draw_measures_right(UIState *s, int bb_x, int bb_y, int bb_w )
     if (scene->controls_state.getEnabled()) {
       //show Orange if more than 6 degrees
       //show red if  more than 12 degrees
-      if(((int)(s->scene.angleSteersDes) < -6) || ((int)(s->scene.angleSteersDes) > 6)) {
+      // Let's be a little more aggressive at 12/18 ! -SonyUSA
+      if(((int)(s->scene.angleSteersDes) < -12) || ((int)(s->scene.angleSteersDes) > 6)) {
         val_color = nvgRGBA(255, 188, 3, 200);
       }
-      if(((int)(s->scene.angleSteersDes) < -12) || ((int)(s->scene.angleSteersDes) > 12)) {
+      if(((int)(s->scene.angleSteersDes) < -18) || ((int)(s->scene.angleSteersDes) > 12)) {
         val_color = nvgRGBA(255, 0, 0, 200);
       }
       // steering is in degrees
@@ -650,6 +667,9 @@ static void ui_draw_vision_footer(UIState *s) {
   ui_draw_vision_face(s);
   ui_draw_vision_brake(s);
   bb_ui_draw_UI(s);
+  ui_draw_waifu1(s); // I'll just leave these 3 here... -SonyUSA
+  ui_draw_waifu2(s);
+  ui_draw_waifu3(s);
 }
 
 static float get_alert_alpha(float blink_rate) {
@@ -859,6 +879,7 @@ void ui_nvg_init(UIState *s) {
   }
 
   // init images
+  // New method??? Please don't break my waifus!!! -SonyUSA
   std::vector<std::pair<const char *, const char *>> images = {
       {"wheel", "../assets/img_chffr_wheel.png"},
       {"trafficSign_turn", "../assets/img_trafficSign_turn.png"},
@@ -874,6 +895,9 @@ void ui_nvg_init(UIState *s) {
       {"network_3", "../assets/images/network_3.png"},
       {"network_4", "../assets/images/network_4.png"},
       {"network_5", "../assets/images/network_5.png"},
+      {"img_waifu1", "../assets/waifu1.png"},
+      {"img_waifu2", "../assets/waifu2.png"},
+      {"img_waifu3", "../assets/waifu3.png"},
   };
   for (auto [name, file] : images) {
     s->images[name] = nvgCreateImage(s->vg, file, 1);
