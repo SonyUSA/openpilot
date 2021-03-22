@@ -322,22 +322,6 @@ static void ui_draw_driver_view(UIState *s) {
     const int box_size = 0.6 * rect.h / 2;
     ui_draw_rect(s->vg, {fbox_x - box_size / 2, fbox_y - box_size / 2, box_size, box_size}, nvgRGBAf(1.0, 1.0, 1.0, alpha), 10, 35.);
   }
-
-  // This looks like a good spot for waifu code! -SonyUSA
-  //
-  // The default images are 267x267 pixels at full size
-  // At full size Y should be about 813, X can be wherever you want along the bottom
-  // If you reduce the image height, be sure to add the difference back to Y
-  // The blue numbers are X, then Y position, followed by Width and Height in pixels
-  static void ui_draw_waifu1(UIState *s) {
-    ui_draw_image(s->vg, 760, 867, 213, 213, s->img_waifu1, 1); // Let's use some magic numbers for now
-  }
-  static void ui_draw_waifu2(UIState *s) {
-    ui_draw_image(s->vg, 960, 867, 213, 213, s->img_waifu2, 1);
-  }
-  static void ui_draw_waifu3(UIState *s) {
-    ui_draw_image(s->vg, 1450, 867, 213, 213, s->img_waifu3, 1);
-  }
   
   // draw face icon
   const int face_size = 100; // Full size! -SonyUSA
@@ -345,6 +329,22 @@ static void ui_draw_driver_view(UIState *s) {
   const int icon_y = rect.bottom() - face_size - bdr_s * 2.5;
   ui_draw_circle_image(s, icon_x, icon_y+border_shifter+25, face_size, "driver_face", face_detected);
   ui_draw_circle_image(s, icon_x + 200, icon_y+border_shifter+25, face_size-5, "brake_disk", s->scene.brakeLights);
+}
+
+// This looks like a good spot for waifu code! -SonyUSA
+//
+// The default images are 267x267 pixels at full size
+// At full size Y should be about 813, X can be wherever you want along the bottom
+// If you reduce the image height, be sure to add the difference back to Y
+// The blue numbers are X, then Y position, followed by Width and Height in pixels
+static void ui_draw_waifu1(UIState *s) {
+  ui_draw_image(s->vg, 760, 867, 213, 213, s->img_waifu1, 1); // Let's use some magic numbers for now
+}
+static void ui_draw_waifu2(UIState *s) {
+  ui_draw_image(s->vg, 960, 867, 213, 213, s->img_waifu2, 1);
+}
+static void ui_draw_waifu3(UIState *s) {
+  ui_draw_image(s->vg, 1450, 867, 213, 213, s->img_waifu3, 1);
 }
 
 static void ui_draw_vision_header(UIState *s) {
