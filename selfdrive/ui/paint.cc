@@ -895,15 +895,20 @@ void ui_nvg_init(UIState *s) {
       {"network_3", "../assets/images/network_3.png"},
       {"network_4", "../assets/images/network_4.png"},
       {"network_5", "../assets/images/network_5.png"},
-      {"img_waifu1", "../assets/waifu1.png"},
-      {"img_waifu2", "../assets/waifu2.png"},
-      {"img_waifu3", "../assets/waifu3.png"},
   };
   for (auto [name, file] : images) {
     s->images[name] = nvgCreateImage(s->vg, file, 1);
     assert(s->images[name] != 0);
   }
 
+  //Let's define some waifus! -SonyUSA
+  s->img_waifu1 = nvgCreateImage(s->vg, "../assets/waifu1.png", 1);
+  assert(s->img_waifu1 != 0);
+  s->img_waifu2 = nvgCreateImage(s->vg, "../assets/waifu2.png", 1);
+  assert(s->img_waifu2 != 0);
+  s->img_waifu3 = nvgCreateImage(s->vg, "../assets/waifu3.png", 1);
+  assert(s->img_waifu3 != 0);
+  
   // init gl
   s->gl_shader = std::make_unique<GLShader>(frame_vertex_shader, frame_fragment_shader);
   GLint frame_pos_loc = glGetAttribLocation(s->gl_shader->prog, "aPosition");
