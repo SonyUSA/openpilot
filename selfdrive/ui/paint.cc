@@ -286,7 +286,7 @@ static void ui_draw_vision_face(UIState *s) {
 static void ui_draw_vision_brake(UIState *s) {
   const int brake_size = 100; // Full size! -SonyUSA
   const int brake_x = (s->viz_rect.x + brake_size + (bdr_is * 1.7) + 200); // Move icons closer together! -SonyUSA
-  const int brake_y = (s->viz_rect.bottom() - footer_h + ((footer_h - f) / 2));
+  const int brake_y = (s->viz_rect.bottom() - footer_h + ((footer_h - brake_size) / 2));
   ui_draw_circle_image(s, brake_x, brake_y+border_shifter+25, brake_size, "brake_disk", s->scene.brakeLights);
 }
 
