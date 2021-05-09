@@ -14,12 +14,12 @@ EventName = car.CarEvent.EventName
 #  We recommend that you do not change these numbers from the defaults.
 # ******************************************************************************************
 
-_AWARENESS_TIME = 140.  # passive wheel touch total timeout
-_AWARENESS_PRE_TIME_TILL_TERMINAL = 30.
-_AWARENESS_PROMPT_TIME_TILL_TERMINAL = 12.
-_DISTRACTED_TIME = 22.
-_DISTRACTED_PRE_TIME_TILL_TERMINAL = 16.
-_DISTRACTED_PROMPT_TIME_TILL_TERMINAL = 12. #Just a little bump in time to stop my short-ness and glasses from throwing false positives so often! -SonyUSA
+_AWARENESS_TIME = 35.  # passive wheel touch total timeout
+_AWARENESS_PRE_TIME_TILL_TERMINAL = 12.
+_AWARENESS_PROMPT_TIME_TILL_TERMINAL = 6.
+_DISTRACTED_TIME = 11.
+_DISTRACTED_PRE_TIME_TILL_TERMINAL = 8.
+_DISTRACTED_PROMPT_TIME_TILL_TERMINAL = 6.
 
 _FACE_THRESHOLD = 0.5
 _PARTIAL_FACE_THRESHOLD = 0.5
@@ -225,9 +225,9 @@ class DriverStatus():
     driver_attentive = self.driver_distraction_filter.x < 0.37
     awareness_prev = self.awareness
 
-    #if self.face_detected and self.hi_stds * DT_DMON > _HI_STD_TIMEOUT and self.hi_std_alert_enabled:
-      #events.add(EventName.driverMonitorLowAcc)
-      #self.hi_std_alert_enabled = False # only showed once until orange prompt resets it
+    if self.face_detected and self.hi_stds * DT_DMON > _HI_STD_TIMEOUT and self.hi_std_alert_enabled:
+      events.add(EventName.driverMonitorLowAcc)
+      self.hi_std_alert_enabled = False # only showed once until orange prompt resets it
 
     if (driver_attentive and self.face_detected and self.pose.low_std and self.awareness > 0):
       # only restore awareness when paying attention and alert is not red
