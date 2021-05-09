@@ -318,7 +318,7 @@ static void ui_draw_vision_brake(UIState *s) {
 static void ui_draw_waifu1(UIState *s) { ui_draw_sprite(s, 890, 946, 100, "waifu1", 1); }
 static void ui_draw_waifu2(UIState *s) { ui_draw_sprite(s, 1030, 946, 100, "waifu2", 1); }
 static void ui_draw_waifu3(UIState *s) { ui_draw_sprite(s, 1400, 946, 100, "waifu3", 1); }
-static void ui_draw_waifu4(UIState *s) { ui_draw_sprite(s, 1600, 946, 100, "waifu4", 1); }
+static void ui_draw_waifu4(UIState *s) { ui_draw_sprite(s, 1570, 946, 100, "waifu4", 1); }
 
 static void ui_draw_driver_view(UIState *s) {
   s->sidebar_collapsed = true;
