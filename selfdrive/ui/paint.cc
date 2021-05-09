@@ -318,6 +318,7 @@ static void ui_draw_vision_brake(UIState *s) {
 static void ui_draw_waifu1(UIState *s) { ui_draw_sprite(s, 890, 946, 100, "waifu1", 1); }
 static void ui_draw_waifu2(UIState *s) { ui_draw_sprite(s, 1030, 946, 100, "waifu2", 1); }
 static void ui_draw_waifu3(UIState *s) { ui_draw_sprite(s, 1400, 946, 100, "waifu3", 1); }
+static void ui_draw_waifu3(UIState *s) { ui_draw_sprite(s, 1700, 946, 100, "waifu4", 1); }
 
 static void ui_draw_driver_view(UIState *s) {
   s->sidebar_collapsed = true;
@@ -680,9 +681,10 @@ static void ui_draw_vision_footer(UIState *s) {
   ui_draw_vision_face(s);
   ui_draw_vision_brake(s);
   bb_ui_draw_UI(s);
-  ui_draw_waifu1(s); // I'll just leave these 3 here... -SonyUSA
+  ui_draw_waifu1(s); // I'll just leave these 4 here... -SonyUSA
   ui_draw_waifu2(s);
   ui_draw_waifu3(s);
+  ui_draw_waifu4(s);
 }
 
 static float get_alert_alpha(float blink_rate) {
@@ -911,6 +913,7 @@ void ui_nvg_init(UIState *s) {
       {"waifu1", "../assets/waifu1.png"},
       {"waifu2", "../assets/waifu2.png"},
       {"waifu3", "../assets/waifu3.png"},
+      {"waifu4", "../assets/waifu4.png"},
   };
   for (auto [name, file] : images) {
     s->images[name] = nvgCreateImage(s->vg, file, 1);
