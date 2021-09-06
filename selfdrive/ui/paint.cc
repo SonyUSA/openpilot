@@ -75,6 +75,18 @@ static void ui_draw_circle_image(const UIState *s, int center_x, int center_y, i
   ui_draw_circle_image(s, center_x, center_y, radius, image, nvgRGBA(0, 0, 0, (255 * bg_alpha)), img_alpha);
 }
 
+// Let's try a custom function since SOMEONE broke draw_image... -SonyUSA
+static void ui_draw_sprite(const UIState *s, int x, int y, int size, const char *image, NVGcolor color, float img_alpha, int img_y = 0) {
+  const int img_size = size * 1.5;
+  ui_draw_image(s, {x - (img_size / 2), img_y ? img_y : y - (size / 4), img_size, img_size}, image, img_alpha);
+}
+// Part 2 -SonyUSA
+static void ui_draw_sprite(const UIState *s, int x, int y, int size, const char *image, bool active) {
+  float bg_alpha = active ? 0.3f : 0.1f;
+  float img_alpha = active ? 1.0f : 0.15f;
+  ui_draw_sprite(s, x, y, size, image, nvgRGBA(0, 0, 0, (255 * bg_alpha)), img_alpha);
+}
+
 static void draw_lead(UIState *s, const cereal::ModelDataV2::LeadDataV3::Reader &lead_data, const vertex_data &vd) {
   // Draw lead car indicator
   auto [x, y] = vd;
@@ -245,18 +257,24 @@ static void ui_draw_vision_event(UIState *s) {
 }
 
 static void ui_draw_vision_face(UIState *s) {
-  const int radius = 80;
+  const int radius = 100; // Full size! -SonyUSA
   const int center_x = radius + (bdr_is * 2) + 10;
   const int center_y = s->fb_h - footer_h / 2 + 50;
   ui_draw_circle_image(s, center_x, center_y, radius, "driver_face", s->scene.dm_active);
 }
 
 static void ui_draw_vision_brake(UIState *s) {
-  const int radius = 80;
-  const int center_x = radius + (bdr_is * 2) + 250;
+  const int radius = 100; // Full size! -SonyUSA
+  const int center_x = radius + (bdr_is * 2) + 225; // Move icons closer together! -SonyUSA
   const int center_y = s->fb_h - footer_h / 2 + 50;
   ui_draw_circle_image(s, center_x, center_y, radius, "brake_disk", (s->scene.brakePressed || s->scene.computerBraking));
 }
+
+// Let's just put the waifu ui_draw_sprite here! -SonyUSA
+static void ui_draw_waifu1(UIState *s) { ui_draw_sprite(s, 890, 946, 100, "waifu1", 1); }
+static void ui_draw_waifu2(UIState *s) { ui_draw_sprite(s, 1030, 946, 100, "waifu2", 1); }
+static void ui_draw_waifu3(UIState *s) { ui_draw_sprite(s, 1400, 946, 100, "waifu3", 1); }
+static void ui_draw_waifu4(UIState *s) { ui_draw_sprite(s, 1570, 946, 100, "waifu4", 1); }
 
 static void ui_draw_vision_header(UIState *s) {
   NVGpaint gradient = nvgLinearGradient(s->vg, 0, header_h - (header_h / 2.5), 0, header_h,
@@ -492,10 +510,11 @@ static void bb_ui_draw_measures_right(UIState *s, int bb_x, int bb_y, int bb_w )
     if (s->scene.enabled) {
       //show Orange if more than 6 degrees
       //show red if  more than 12 degrees
-      if(((s->scene.angleSteersDes) < -6) || ((s->scene.angleSteersDes) > 6)) {
+      //We have torque mod so let's be a little more aggressive at 8/16! -SonyUSA
+      if(((s->scene.angleSteersDes) < -8) || ((s->scene.angleSteersDes) > 8)) {
         val_color = nvgRGBA(255, 188, 3, 200);
       }
-      if(((s->scene.angleSteersDes) < -12) || ((s->scene.angleSteersDes) > 12)) {
+      if(((s->scene.angleSteersDes) < -16) || ((s->scene.angleSteersDes) > 16)) {
         val_color = nvgRGBA(255, 0, 0, 200);
       }
       // steering is in degrees
@@ -541,6 +560,10 @@ static void ui_draw_vision_footer(UIState *s) {
   ui_draw_vision_brake(s);
   bb_ui_draw_UI(s);
   screen_draw_button(s);
+  ui_draw_waifu1(s); // I'll just leave these 4 here... -SonyUSA
+  ui_draw_waifu2(s);
+  ui_draw_waifu3(s);
+  ui_draw_waifu4(s); 
 }
 static void ui_draw_vision(UIState *s) {
   UIScene *scene = &s->scene;
